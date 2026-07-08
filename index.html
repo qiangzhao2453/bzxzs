@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的AI智能体</title>
+    <style>
+        /* 页面基础样式，让内容居中 */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        /* SDK的聊天窗口将填充这个容器 */
+        #coze-chat-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Coze Chat SDK 将挂载到这个 div 中 -->
+        <div id="coze-chat-container"></div>
+    </div>
+
+    <!-- 1. 引入 Coze Chat SDK -->
+    <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.15/libs/cn/index.js"></script>
+    <!-- 注意：版本号可能更新，建议从Coze官方发布渠道获取最新链接 -->
+
+    <script>
+        // 2. 初始化聊天界面
+        new CozeWebSDK.WebChatClient({
+            config: {
+                bot_id: '7657853798601654298', // 替换为你的智能体ID[reference:12]
+            },
+            auth: {
+                type: 'token',
+                token: 'pat_s3UYM4JFyow1BOKagxOP4LGpYAt8mMILCrHdfWrna48e8iyfHpzFb8mHbffGHftu' ,// 替换为你的个人访问令牌[reference:13]
+                onRefreshToken: async () => 'pat_s3UYM4JFyow1BOKagxOP4LGpYAt8mMILCrHdfWrna48e8iyfHpzFb8mHbffGHftu', // 新增这一行
+            },
+            ui: {
+                // 你可以在这里自定义聊天窗口的样式
+                // 这里设置为挂载到上面定义的容器中，并占满它
+                container: document.getElementById('coze-chat-container'),
+                // 或者，你也可以使用悬浮窗模式，像这样：
+                // type: 'float',
+                // floatProps: {
+                //     position: 'bottom-right', // 或 'bottom-left'
+                //     offset: { x: 20, y: 20 },
+                //     size: { width: 400, height: 600 }
+                // }
+            }
+        });
+    </script>
+</body>
+</html>
