@@ -11,20 +11,16 @@
 
 在学习和实践AI智能体过程中，针对企业客服场景中"用户问题类型多样、单一Prompt无法准确处理、需要分流到不同处理逻辑"的痛点，设计了一套多意图识别+分支路由的客服工作流方案。
 
-## 🏗️ 系统架构
+## 🏗️ 系统处理流程
 
-&emsp;&emsp;&emsp;用户输入
-&emsp;&emsp;&emsp;&emsp;↓
-&emsp;&emsp;【意图识别节点】(LLM Router)
-&emsp;&emsp;&emsp;&emsp;↓ 分类判断
-&emsp;┌──────────┬──────────┬──────────┬──────────┐
-&emsp;↓&emsp;&emsp;&emsp;&emsp;&emsp;↓&emsp;&emsp;&emsp;&emsp;&emsp;↓&emsp;&emsp;&emsp;&emsp;&emsp;↓
-知识库检索&emsp;固定回复&emsp;&emsp;人工转接&emsp;&emsp;闲聊处理
-(RAG问答)&emsp;(FAQ匹配)&emsp;&emsp;(转人工)&emsp;&emsp;(寒暄回复)
-&emsp;↓&emsp;&emsp;&emsp;&emsp;&emsp;↓&emsp;&emsp;&emsp;&emsp;&emsp;↓&emsp;&emsp;&emsp;&emsp;&emsp;↓
-&emsp;└──────────┴──────────┴──────────┴──────────┘
-&emsp;&emsp;&emsp;&emsp;↓
-&emsp;&emsp;【回复生成 & 输出】
+1. **用户输入**：接收用户消息
+2. **意图识别**(LLM Router)：LLM自动分类用户意图类型
+3. **分支路由**（选择器节点）：根据意图分发到对应处理分支
+   - 📚 **知识库检索**(RAG问答)：产品咨询类 → 知识库检索增强生成
+   - 💬 **固定回复**(FAQ匹配)：高频标准问题 → 直接匹配FAQ回复
+   - 👤 **人工转接**(转人工)：投诉/复杂问题 → 触发人工转接流程
+   - 😊 **闲聊处理**(寒暄回复)：寒暄问候 → 自然回复
+4. **回复生成 & 输出**：汇总分支结果返回给用户
 
 ## ✨ 核心功能
 
