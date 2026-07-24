@@ -14,7 +14,19 @@ Coze Bot体验：https://www.coze.cn/s/nQbgOgw6WkE/
 🏗️ 系统架构
 
 plaintext
-
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
 用户输入
   ↓
 【意图识别节点】(LLM Router)
